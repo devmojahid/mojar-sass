@@ -2,6 +2,7 @@
 namespace App\Config;
 use PDO;
 use PDOException;
+use Exception;
 
 class Database{
     public $host     = 'localhost';
@@ -12,7 +13,6 @@ class Database{
 
     public function __construct()
     {
-        $this->conn = null;
         try {
             $this->conn = new PDO("mysql:host=$this->host;dbname=$this->db_name",$this->username,$this->password);
             // set the PDO error mode to exception
@@ -22,8 +22,9 @@ class Database{
         }
     }
 
-    public static function select($table,$where=null,$order=null,$limit=null){
+    public function select($table,$where=null,$order=null,$limit=null){
        try {
+        
         $sql = "SELECT * FROM $table";
         if($where != null){
             $sql .= " WHERE $where";
@@ -42,25 +43,15 @@ class Database{
        }
     }
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+    public function query($sql){
+        try {
+            $stmt = $this->conn->prepare($sql);
+            $stmt->execute();
+            return $stmt->rowCount();
+        } catch (PDOException $e) {
+            echo "Query Faild: {$e->getMessage()}";
+        }
+    }       
 
 
 
