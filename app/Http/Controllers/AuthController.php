@@ -6,6 +6,6 @@ use App\Models\User;
 class AuthController
 {
     public function index(){
-        new User();
+        User::select("users");
     }
 }
