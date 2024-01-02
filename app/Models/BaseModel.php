@@ -9,7 +9,7 @@ class BaseModel extends Database{
     {
         echo "<br>From Basemodel<br>";
 
-        echo($this->somthing());
+       
     }
 
 
