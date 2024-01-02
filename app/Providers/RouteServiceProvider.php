@@ -37,7 +37,7 @@ class RouteServiceProvider
                 $controller->$action();
                 return;
             }
-            echo "404 from Handler ROite Service Provider";
+            echo "404 from Handler Route Service Provider";
         }
     }
 

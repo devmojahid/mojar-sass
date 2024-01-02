@@ -6,6 +6,7 @@ use App\Models\User;
 class AuthController
 {
     public function index(){
-        new User();
+        var_dump((new User)->select("users"));
+        // var_dump((new User)->query("INSERT INTO users (name,email,password) VALUES ('Md. Alamin','mojahid@gmail.com','123456')"));
     }
 }
